@@ -24,8 +24,11 @@
 </head>
 <body>
 
-<?php include "header.php"; ?>
-<?php include "connection.php"; ?>
+<?php 
+        include "header.php"; 
+        include "connection.php";
+        include "month.php";
+?>
 
 <?php
 
@@ -42,8 +45,9 @@ if(isset($_GET['portfolio_id'])){
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <nav id="breadcrumbs">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li>Portfolio</li>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="portfolio.php">Portfolio</a></li>
+                            <li>Portfolio Post</li>
                         </ul>
                     </nav>
 
@@ -71,11 +75,25 @@ try{
 				<div class="row sub_content">
 					<div class="col-lg-8 col-md-8 col-sm-8">
 						<!--Project Details Page-->
-						<div class="porDetCarousel">
+						<div class="porDetCarousel1">
 							<div class="carousel-content">
-								<img class="carousel-item" src="images/portfolio/portfolio_slider1.png" alt="">
-								<img class="carousel-item" src="images/portfolio/portfolio_slider2.png" alt="">
-								<img class="carousel-item" src="images/portfolio/portfolio_slider3.png" alt="">
+
+                    <?php
+                        if($result['portfolio_img'] != ""){
+                    ?>
+
+								<img class="carousel-item1" src="images/portfolio/<?php echo $result['portfolio_img']; ?>" alt="">
+
+                    <?php
+                        }else{
+                    ?>
+
+                                <img class="carousel-item1" src="images/portfolio/portfolio_slider1.png" alt="">
+
+                    <?php
+                        }
+                    ?>
+
 							</div>
 						</div>
 					</div>
@@ -86,23 +104,22 @@ try{
 								<h4><span>Project Descriptions</span></h4>
 							</div>
 
-							<p><?php echo $result[7]; ?></p>
+							<p><?php echo $result['project_description']; ?></p>
 						</div>
 						<div class="project_details">
 							<div class="widget_title">
 								<h4><span>Project Details</span></h4>
 							</div>
 							<ul class="details">
-								<li><span>Client :</span><?php echo $result[2]; ?></li>
-								<li><span>Company :</span><?php echo $result[3]; ?></li>
-								<li><span>Category :</span><?php echo $result[4]; ?></li>
-								<li><span>Date :</span><?php echo $result[5]; ?></li>
-								<li><span>Project URL :</span> <a href="#"><?php echo $result[6]; ?></a></li>
+								<li><span>Client :</span><?php echo $result['client']; ?></li>
+								<li><span>Company :</span><?php echo $result['company']; ?></li>
+								<li><span>Category :</span><?php echo $result['project_category']; ?></li>
+								<li><span>Date :</span><?php echo $result['project_date']; ?></li>
+								<li><span>Project URL :</span><a href="<?php echo $result['project_url']; ?>" target="_blank"><?php echo $result['project_url']; ?></a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
-
 <?php
     }
 }catch(PDOException $e){
@@ -128,7 +145,7 @@ try{
 
 <?php 
 
-try{    
+try{
     $sqlquery = $connection->prepare("select * from `portfolio` order by portfolio_id desc limit 8");
     $sqlquery->execute();
 
@@ -279,102 +296,16 @@ try{
 	<!--end wrapper-->
 
 	<!--start footer-->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>About Us</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <p>Donec earum rerum hic tenetur ans sapiente delectus, ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus asperiores.</p>
-                        <ul class="contact-details-alt">
-                            <li><i class="fa fa-map-marker"></i> <p><strong>Address</strong>: #2021 Lorem Ipsum</p></li>
-                            <li><i class="fa fa-user"></i> <p><strong>Phone</strong>:(+91) 9000-12345</p></li>
-                            <li><i class="fa fa-envelope"></i> <p><strong>Email</strong>: <a href="#">mail@example.com</a></p></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Recent Posts</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <ul class="links">
-                        <li> <a href="#">Aenean commodo ligula eget dolor<span>November 07, 2020</span></a></li>
-                        <li> <a href="#">Temporibus autem quibusdam <span>November 05, 2020</span></a></li>
-                        <li> <a href="#">Debitis aut rerum saepe <span>November 03, 2020</span></a></li>
-                        <li> <a href="#">Et voluptates repudiandae <span>November 02, 2020</span></a></li>
-                    </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Twitter</span></h4>
-
-                    </div>
-                    <div class="widget_content">
-                        <ul class="tweet_list">
-                            <li class="tweet_content item">
-                            <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                            <span class="time">29 September 2020</span>
-                        </li>
-                            <li class="tweet_content item">
-                            <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                            <span class="time">29 September 2020</span>
-                        </li>
-                            <li class="tweet_content item">
-                            <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                            <span class="time">29 September 2020</span>
-                        </li>
-                        </ul>
-                    </div>
-                    <div class="widget_content">
-                        <div class="tweet_go"></div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Flickr Gallery</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <div class="flickr">
-                            <ul id="flickrFeed" class="flickr-feed"></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php
+        include "footer.php";
+    ?>
 	<!--end footer-->
-	
-	<section class="footer_bottom">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 ">
-                    <p class="copyright">&copy; Copyright 2020 Edge | Powered by  <a href="https://www.yahoobaba.net/">Yahoo Baba</a></p>
-				</div>
-				<div class="col-sm-6 ">
-					<div class="footer_social">
-						<ul class="footbot_social">
-							<li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
-							<li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-							<li><a class="dribbble" href="#." data-placement="top" data-toggle="tooltip" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>
-							<li><a class="skype" href="#." data-placement="top" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
-							<li><a class="rss" href="#." data-placement="top" data-toggle="tooltip" title="RSS"><i class="fa fa-rss"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
     <script src="js/retina-1.1.0.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script> <!-- jQuery cookie -->
-    <script type="text/javascript" src="js/styleswitch.js"></script> <!-- Style Colors Switcher -->
     <script type="text/javascript" src="js/jquery.smartmenus.min.js"></script>
     <script type="text/javascript" src="js/jquery.smartmenus.bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery.jcarousel.js"></script>
@@ -500,8 +431,5 @@ try{
 	</script>
 	<script src="js/main.js"></script>
 	
-	<!-- Start Style Switcher -->
-	<div class="switcher"></div>
-	<!-- End Style Switcher -->
 </body>
 </html>

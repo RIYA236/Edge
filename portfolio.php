@@ -51,13 +51,10 @@
                         <div class="col-lg-12 isotope">
                             <!--begin portfolio filter -->
                             <ul id="filter">
-                                <!-- <input type="submit" name="All" class="all" value="All" />
-                                <input type="submit" name="Responsive" class="responsive" value="Responsive" />
-                                <input type="submit" name="Mobile" class="mobile" value="Mobile" />
-                                <input type="submit" name="Branding" class="branding" value="Branding" /> -->
                                 <a href='portfolio.php?category=all' class="filter_list">All</a>
 
             <?php
+            if(isset($connection)){
                 $sqlquery = $connection->prepare("select * from `portfolio` group by `portfolio_category`");
                 $sqlquery->execute();
                 $results = $sqlquery;
@@ -67,7 +64,10 @@
 
         <a href='portfolio.php?category=<?php echo $GLOBALS['all_category'];?>' class="filter_list"><?php echo $result['portfolio_category'];?></a>
 
-            <?php } ?>
+            <?php 
+                }
+            }
+            ?>
 
                             </ul>
                             <!--end portfolio filter -->
@@ -77,6 +77,8 @@
                                 <!--begin List Item -->
 
 <?php
+if(isset($connection)){
+
 if(isset($_GET['category'])){
 
     $category = $_GET['category'];
@@ -91,6 +93,7 @@ else if(!isset($_GET['category'])){
     all_data($connection);
 }
 
+}
 ?>
 
 <?php
@@ -116,7 +119,7 @@ try{
         $initial_page = (1-1) * $limit; 
     }
 
-    $sqlquery = $connection->prepare("select * from `portfolio` where `portfolio_category`='$category' order by `portfolio_id` desc limit $initial_page , $limit");
+    $sqlquery = $connection->prepare("Select * from `portfolio` where `portfolio_category`='$category' order by `portfolio_id` desc limit $initial_page , $limit");
     $sqlquery->execute();
     $results = $sqlquery;
 
@@ -128,7 +131,7 @@ try{
                                         <img src="images/portfolio/portfolio_2.png" alt="image"/>
                                         <figcaption>
                                             <h5>Touch and Swipe</h5>
-                                            <p><?php echo $result['portfolio_category'].$result[0] . "r"; ?></p>
+                                            <p><?php echo $result['portfolio_category']; ?></p>
                                         </figcaption>
                                     </figure>
                                 </li>
@@ -180,7 +183,7 @@ try{
                                         <img src="images/portfolio/portfolio_2.png" alt="image"/>
                                         <figcaption>
                                             <h5>Touch and Swipe</h5>
-                                            <p><?php echo $result['portfolio_category'].$result['portfolio_id'] . "a"; ?></p>
+                                            <p><?php echo $result['portfolio_category']; ?></p>
                                         </figcaption>
                                     </figure>
                                 </li>
@@ -198,6 +201,8 @@ try{
                         <div class="col-sm-12 text-center">
                             <ul class="pagination">
 <?php
+if(isset($connection)){
+
 if(isset($_GET['category'])){
 
     $category = $_GET['category'];
@@ -207,6 +212,8 @@ if(isset($_GET['category'])){
     }else{
         $GLOBALS['total_pages'] = $GLOBALS['total_responsive'];
     }
+}
+
 }
 ?>
                     <?php
@@ -386,96 +393,11 @@ if(isset($_GET['category'])){
 	<!--end wrapper-->
 </form>
 	<!--start footer-->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>About Us</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <p>Donec earum rerum hic tenetur ans sapiente delectus, ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus asperiores.</p>
-                        <ul class="contact-details-alt">
-                            <li><i class="fa fa-map-marker"></i> <p><strong>Address</strong>: #2021 Lorem Ipsum</p></li>
-                            <li><i class="fa fa-user"></i> <p><strong>Phone</strong>:(+91) 9000-12345</p></li>
-                            <li><i class="fa fa-envelope"></i> <p><strong>Email</strong>: <a href="#">mail@example.com</a></p></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Recent Posts</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <ul class="links">
-                        <li> <a href="#">Aenean commodo ligula eget dolor<span>November 07, 2020</span></a></li>
-                        <li> <a href="#">Temporibus autem quibusdam <span>November 05, 2020</span></a></li>
-                        <li> <a href="#">Debitis aut rerum saepe <span>November 03, 2020</span></a></li>
-                        <li> <a href="#">Et voluptates repudiandae <span>November 02, 2020</span></a></li>
-                    </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Twitter</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <ul class="tweet_list">
-                            <li class="tweet_content item">
-                            <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                            <span class="time">29 September 2020</span>
-                        </li>
-                            <li class="tweet_content item">
-                            <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                            <span class="time">29 September 2020</span>
-                        </li>
-                            <li class="tweet_content item">
-                            <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                            <span class="time">29 September 2020</span>
-                        </li>
-                        </ul>
-                    </div>
-                    <div class="widget_content">
-                        <div class="tweet_go"></div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Flickr Gallery</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <div class="flickr">
-                            <ul id="flickrFeed" class="flickr-feed"></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php
+        include "footer.php";
+    ?>
 	<!--end footer-->
 	
-	<section class="footer_bottom">
-		<div class="container">
-			<div class="row">
-            <div class="col-sm-6">
-                <p class="copyright">&copy; Copyright <?php echo date("Y"); ?> Edge | Powered by  <a href="https://www.yahoobaba.net/">Yahoo Baba</a></p>
-            </div>
-
-            <div class="col-sm-6 ">
-                <div class="footer_social">
-                    <ul class="footbot_social">
-                        <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="dribbble" href="#." data-placement="top" data-toggle="tooltip" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a class="skype" href="#." data-placement="top" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
-                        <li><a class="rss" href="#." data-placement="top" data-toggle="tooltip" title="RSS"><i class="fa fa-rss"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-		</div>
-	</section>
-
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>

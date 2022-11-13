@@ -1679,6 +1679,23 @@ span#blogDescription{
 .blog_large .post_content > p, .blog_single .post_content > p {
     margin-bottom: 20px;
 }
+div#search{
+  max-width: fit-content;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+div#search img{
+  padding: 10px;
+  background: #727CB6;
+}
+input#searchsubmit{
+  border: none;
+}
+input#searchsubmit:focus{
+  padding: 5px;
+  padding-bottom: 8px;
+  margin-right: -3px;
+}
 
 /* BLOG MEDIUM
 /* ==========================*/

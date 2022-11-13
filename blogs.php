@@ -201,7 +201,23 @@ include "month.php";
 								</div>
 								<figure class="post_img">
 									<a>
+
+                                    <?php
+                                        if($result['blog_img'] != ""){
+                                    ?>
+
 										<img src="images/blog/<?php echo $result['blog_img']; ?>" alt="blog post">
+
+                                    <?php
+                                        }else{
+                                    ?>
+
+										<img src="images/blog/blog_medium_1.png" alt="blog post">
+
+                                    <?php
+                                        }
+                                    ?>
+
 									</a>
 								</figure>
 								<div class="post_content">
@@ -237,6 +253,8 @@ include "month.php";
                         ?>
 
 <?php
+if(isset($connection)){
+
 if(isset($_GET['category'])){
 
     $category = $_GET['category'];
@@ -256,6 +274,8 @@ if(isset($_GET['category'])){
     }
 }else if( !isset($_GET['category']) && !isset($_GET['month']) && !isset($_GET['year']) ){
     all_data($connection);
+}
+
 }
 ?>
 
@@ -388,11 +408,7 @@ if(isset($_GET['category'])){
 
                     <?php
                                 }
-                            }
-
-
-
-                        else{
+                            }else{
                             if(isset($_GET['page'])){
                                 if( ($_GET['page']) != "" && ($_GET['page']) != 1 && ($_GET['page'] <= $GLOBALS['total_pages'])){
                                 $previous = ($_GET['page'] - 1); 
@@ -411,11 +427,6 @@ if(isset($_GET['category'])){
             if(  isset($GLOBALS['total_pages'])  ){
                 for($i= 1; $i<= $GLOBALS['total_pages']; $i++){
                     if($total_pages<=10){
-
-                        
-
-
-
                             if(isset($_GET['category'])){
                                 if(isset($_GET['page'])){
                                     if($_GET['page'] <= $GLOBALS['total_pages']){
@@ -440,11 +451,7 @@ if(isset($_GET['category'])){
                     <li><a href="blogs.php?month=<?php echo $_GET['month']; ?>&year=<?php echo $_GET['year']; ?>&page=<?php echo $i; ?>" id="<?php echo $i; ?>"><?php echo $i; ?></a></li>
                             <?php
                                 }
-                            }
-
-                            
-
-                            else{
+                            }else{
                                 if(isset($_GET['page'])){
                                     if($_GET['page'] <= $GLOBALS['total_pages']){
                             ?>
@@ -499,13 +506,7 @@ if(isset($_GET['category'])){
                             <li><a href="blogs.php?month=<?php echo $_GET['month']; ?>&year=<?php echo $_GET['year']; ?>&page=<?php echo $i; ?>" id="<?php echo $i; ?>"><?php echo $i; ?></a></li>
                                     <?php
                                         }
-                                    }
-
-                                    
-
-
-
-                                    else{
+                                    }else{
                                         if(isset($_GET['page'])){
                                             if($_GET['page'] <= $GLOBALS['total_pages']){
                                     ?>
@@ -613,17 +614,15 @@ else{
 						<div class="sidebar">
 							<div class="widget widget_search">
 								<div class="site-search-area">
-									<!-- <form method="get" id="site-searchform" action="#"> -->
-										<div>
-											<input class="input-text" name="s" id="s" placeholder="Enter Search keywords..." type="text" />
-											<!-- <input id="searchsubmit" value="Search" type="submit" /> -->
-										</div>
-									<!-- </form> -->
+                                    <div id="search">
+                                        <input  type="text" class="input-text" name="search" id="searchsubmit" placeholder="Enter Search keywords..." />
+                                        <img src="images/search-icon.png" />
+                                    </div>
 								</div><!-- end site search -->
 							</div>
 <script>
 $(document).ready(function(){
- $('#s').keyup(function(){
+ $('#searchsubmit').keyup(function(){
  
   var text = $(this).val().toLowerCase();
  
@@ -646,6 +645,8 @@ $(document).ready(function(){
 									</div>
                         <ul class="arrows_list list_style">
     <?php
+    if(isset($connection)){
+
         $sqlquery = $connection->prepare("SELECT `blog_category`, COUNT(`blog_id`)as total FROM `blogs` GROUP by `blog_category`");
         $sqlquery->execute();
         $results = $sqlquery;
@@ -655,6 +656,7 @@ $(document).ready(function(){
             <li><a href="blogs.php?category=<?php echo $result['blog_category']; ?>"> <?php echo $result['blog_category']; ?> (<?php echo $result['total']; ?>)</a></li>
     <?php
         }
+    }
     ?>
                 </ul>
     				</div>
@@ -666,108 +668,25 @@ $(document).ready(function(){
 								<p>Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 							</div>
 
-                            <div class="edge-tab sidebar-tab">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#Popular" data-toggle="tab">Popular</a></li>
-                                    <li class=""><a href="#Recent" data-toggle="tab">Recent</a></li>
-                                    <li class="last-tab"><a href="#Comment" data-toggle="tab"><i class="fa fa-comments-o"></i></a></li>
-                                </ul>
-
-                                <div class="tab-content clearfix">
-                                    <div class="tab-pane fade active in" id="Popular">
-                                        <ul class="recent_tab_list">
-                                            <li>
-                                                <span><a href="#"><img src="images/content/recent_1.png" alt="" /></a></span>
-                                                <a href="#">Publishing packag esanse web page editos</a>
-                                                <i>October 09, 2015</i>
-                                            </li>
-                                            <li>
-                                                <span><a href="#"><img src="images/content/recent_2.png" alt="" /></a></span>
-                                                <a href="#">Sublishing packag esanse web page editos</a>
-                                                <i>October 08, 2015</i>
-                                            </li>
-                                            <li class="last-tab">
-                                                <span><a href="#"><img src="images/content/recent_3.png" alt="" /></a></span>
-                                                <a href="#">Mublishing packag esanse web page editos</a>
-                                                <i>October 07, 2015</i>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-pane fade" id="Recent">
-                                        <ul class="recent_tab_list">
-                                            <li>
-                                                <span><a href="#"><img src="images/content/recent_4.png" alt="" /></a></span>
-                                                <a href="#">Various versions has evolved over the years</a>
-                                                <i>October 18, 2015</i>
-                                            </li>
-                                            <li>
-                                                <span><a href="#"><img src="images/content/recent_5.png" alt="" /></a></span>
-                                                <a href="#">Rarious versions has evolve over the years</a>
-                                                <i>October 17, 2015</i>
-                                            </li>
-                                            <li class="last-tab">
-                                                <span><a href="#"><img src="images/content/recent_6.png" alt="" /></a></span>
-                                                <a href="#">Marious versions has evolven over the years</a>
-                                                <i>October 16, 2015</i>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-pane fade" id="Comment">
-                                        <ul class="comments">
-                                            <li class="comments_list clearfix">
-                                                <a class="post-thumbnail" href="#"><img width="60" height="60" src="images/content/recent_3.png" alt="#"></a>
-                                                <p><strong><a href="#">Prambose</a> <i>says: </i> </strong> Morbi augue velit, tempus mattis dignissim nec, porta sed risus. Donec eget magna eu lorem tristique pellentesque eget eu dui. Fusce lacinia tempor malesuada.</p>
-                                            </li>
-                                            <li class="comments_list clearfix">
-                                                <a class="post-thumbnail" href="#"><img width="60" height="60" src="images/content/recent_1.png" alt="#"></a>
-                                                <p><strong><a href="#">Makaroni</a> <i>says: </i> </strong> Tempus mattis dignissim nec, porta sed risus. Donec eget magna eu lorem tristique pellentesque eget eu dui. Fusce lacinia tempor malesuada.</p>
-                                            </li>
-                                            <li class="comments_list clearfix">
-                                                <a class="post-thumbnail" href="#"><img width="60" height="60" src="images/content/recent_2.png" alt="#"></a>
-                                                <p><strong><a href="#">Prambanan</a> <i>says: </i> </strong> Donec convallis, metus nec tempus aliquet, nunc metus adipiscing leo, a lobortis nisi dui ut odio. Nullam ultrices, eros accumsan vulputate faucibus, turpis tortor.</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-							
-							<div class="widget widget_tags">
-								<div class="widget_title">
-									<h4><span>Tags Widget</span></h4>
-								</div>
-								<ul class="tags">
-									<li><a href="#"><b>business</b></a></li>
-									<li><a href="#">corporate</a></li>
-									<li><a href="#">css3</a></li>
-									<li><a href="#"><b>html5</b></a></li>
-									<li><a href="#">javascript</a></li>
-									<li><a href="#"><b>jquery</b></a></li>
-									<li><a href="#">multipurpose</a></li>
-									<li><a href="#"><b>mysql</b></a></li>
-									<li><a href="#">portfolio</a></li>
-									<li><a href="#">premium</a></li>
-									<li><a href="#">responsive</a></li>
-									<li><a href="#"><b>theme</b></a></li>
-									<li><a href="#"><b>Yahoo Baba</b></a></li>
-								</ul>
-							</div>
-							
+                        <div class="edge-tab sidebar-tab">
 							<div class="widget widget_archives">
 								<div class="widget_title">
 									<h4><span>Archives</span></h4>
 								</div>
 								<ul class="archives_list list_style">
         <?php
+        if(isset($connection)){
             $sqlquery = $connection->prepare("SELECT month(`blog_created_date`) as month, year(`blog_created_date`) as year FROM `blogs` GROUP by month(`blog_created_date`) , year(`blog_created_date`) ORDER by year(`blog_created_date`), month(`blog_created_date`)");
             $sqlquery->execute();
             $results = $sqlquery;
 
             foreach($results as $result){
                 $month = $result['month'];
-        ?>                                    
+            ?>                                    
     								<li><a href="blogs.php?month=<?php monthName($month); ?>&year=<?php echo $result['year'];?>"> <?php monthName($month); ?> <?php echo $result['year'];?></a></li>
         <?php 
-            } 
+            }
+        }
         ?>
 								</ul>
 							</div>
@@ -782,102 +701,16 @@ $(document).ready(function(){
 	<!--end wrapper-->
 
 	<!--start footer-->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>About Us</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <p>Donec earum rerum hic tenetur ans sapiente delectus, ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus asperiores.</p>
-                        <ul class="contact-details-alt">
-                            <li><i class="fa fa-map-marker"></i> <p><strong>Address</strong>: #2021 Lorem Ipsum</p></li>
-                            <li><i class="fa fa-user"></i> <p><strong>Phone</strong>:(+91) 9000-12345</p></li>
-                            <li><i class="fa fa-envelope"></i> <p><strong>Email</strong>: <a href="#">mail@example.com</a></p></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Recent Posts</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <ul class="links">
-                        <li> <a href="#">Aenean commodo ligula eget dolor<span>November 07, 2020</span></a></li>
-                        <li> <a href="#">Temporibus autem quibusdam <span>November 05, 2020</span></a></li>
-                        <li> <a href="#">Debitis aut rerum saepe <span>November 03, 2020</span></a></li>
-                        <li> <a href="#">Et voluptates repudiandae <span>November 02, 2020</span></a></li>
-                    </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Twitter</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <ul class="tweet_list">
-                            <li class="tweet_content item">
-                            <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                            <span class="time">29 September 2020</span>
-                        </li>
-                            <li class="tweet_content item">
-                            <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                            <span class="time">29 September 2020</span>
-                        </li>
-                            <li class="tweet_content item">
-                            <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                            <span class="time">29 September 2020</span>
-                        </li>
-                        </ul>
-                    </div>
-                    <div class="widget_content">
-                        <div class="tweet_go"></div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Flickr Gallery</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <div class="flickr">
-                            <ul id="flickrFeed" class="flickr-feed"></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php
+        include "footer.php";
+    ?>
 	<!--end footer-->
-	
-	<section class="footer_bottom">
-		<div class="container">
-			<div class="row">
-            <div class="col-sm-6">
-                <p class="copyright">&copy; Copyright 2020 Edge | Powered by  <a href="https://www.yahoobaba.net/">Yahoo Baba</a></p>
-            </div>
-
-            <div class="col-sm-6 ">
-                <div class="footer_social">
-                    <ul class="footbot_social">
-                        <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="dribbble" href="#." data-placement="top" data-toggle="tooltip" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a class="skype" href="#." data-placement="top" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
-                        <li><a class="rss" href="#." data-placement="top" data-toggle="tooltip" title="RSS"><i class="fa fa-rss"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-		</div>
-	</section>
 
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
     <script src="js/retina-1.1.0.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script> <!-- jQuery cookie -->
-    <!-- <script type="text/javascript" src="js/styleswitch.js"></script> Style Colors Switcher -->
     <script type="text/javascript" src="js/jquery.smartmenus.min.js"></script>
     <script type="text/javascript" src="js/jquery.smartmenus.bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery.jcarousel.js"></script>
@@ -889,8 +722,5 @@ $(document).ready(function(){
 
     <script src="js/main.js"></script>
 
-    <!-- <div class="switcher"></div> -->
-    <!-- Start Style Switcher -->
-    <!-- End Style Switcher -->
 </body>
 </html>

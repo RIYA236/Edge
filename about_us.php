@@ -35,7 +35,6 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <nav id="breadcrumbs">
                         <ul>
-
                             <li><a href="index.php">Home</a></li>
                             <li>About Us</li>
                         </ul>
@@ -142,7 +141,7 @@
 							<div class="carousel-inner">
 
 <?php
-
+if(isset($connection)){
 try{
     $sqlquery = $connection->prepare("select * from `testimonial` limit 1");
     $sqlquery -> execute();
@@ -164,14 +163,16 @@ try{
 									</div>
 								</div>
 <?php
-
-}
+    }
 }catch(PDOException $e){
     echo "Not found";
 }
 
+}
 ?>
 <?php
+if(isset($connection)){
+
 try{
     $sqlquery = $connection->prepare("select * from `testimonial` ORDER BY `client_id` DESC limit 10 offset 1");
     $sqlquery -> execute();
@@ -197,35 +198,9 @@ try{
 }catch(PDOException $e){
     echo "Not found";
 }
-?>
 
-								<!-- <div class="active item">
-									<div class="testimonial-item">
-										<div class="icon"><i class="fa fa-quote-right"></i></div>
-										<blockquote>
-											<p>Donec convallis, metus nec tempus aliquet, nunc metus adipiscing leo, a lobortis nisi dui ut odio. Nullam ultrices, eros accumsan vulputate faucibus, turpis tortor dictum.</p>
-										</blockquote>
-										<div class="icon-tr"></div>
-										<div class="testimonial-review">
-											<img src="images/testimonials/1.png" alt="testimoni">
-											<h1>Jonathan Dower,<small>Company Inc.</small></h1>
-										</div>
-									</div>
-								</div>
-								 -->
-								<!-- <div class="item">
-									<div class="testimonial-item">
-										<div class="icon"><i class="fa fa-quote-right"></i></div>
-										<blockquote>
-											<p>Nunc aliquet tincidunt metus, sit amet mattis lectus sodales ac. Suspendisse rhoncus dictum eros, ut egestas eros luctus eget. Nam nibh sem, mattis et feugiat ut, porttitor nec risus.</p>
-										</blockquote>
-										<div class="icon-tr"></div>
-										<div class="testimonial-review">
-											<img src="images/testimonials/2.png" alt="testimoni">
-											<h1>Jonathan Dower<small>Leopard</small></h1>
-										</div>
-									</div>
-								</div> -->
+}
+?>
 								
 							</div>
 							<div class="testimonial-buttons"><a href="#testimonial-carousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>&#32;
@@ -234,27 +209,6 @@ try{
 					</div><!-- TESTIMONIALS END -->
 				</div>
 			
-				<!-- <div class="row sub_content">
-					<div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="promo_box">
-                            <div class="col-sm-9">
-                                <div class="promo_content">
-                                    <h3>Edge is awesome responsive template, with refreshingly clean design.</h3>
-                                    <p>Lorem ipsum dolor sit amet, cons adipiscing elit. Aenean commodo ligula eget dolor. </p>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="pb_action">
-                                    <a href="#fakelink" class="btn btn-default btn-lg">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        Download Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-					</div>
-				</div> -->
-
                 <div class="row  sub_content">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="dividerHeading">
@@ -264,6 +218,7 @@ try{
                     </div>
 
         <?php
+        if(isset($connection)){
 
             try{
                 $sqlquery = $connection->prepare("select * from `employee_team`");
@@ -288,13 +243,6 @@ try{
             }
         ?>
 
-                                <!-- <div class="social_media_team">
-                                    <ul class="team_social">
-                                        <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a class="gmail" href="#." data-placement="top" data-toggle="tooltip" title="Google"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div> -->
                             </div>
                             <div class="team_prof">
                                 <h3 class="names"><?php echo $result['employee_name']; ?><small><?php echo $result['employee_position']; ?></small></h3>
@@ -309,6 +257,8 @@ try{
         echo "Connection failed";
     }
     $connection = null;
+
+}
 ?>
 
                 </div>
@@ -318,96 +268,11 @@ try{
 	<!--end wrapper-->
 
 	<!--start footer-->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>About Us</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <p>Donec earum rerum hic tenetur ans sapiente delectus, ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus asperiores.</p>
-                        <ul class="contact-details-alt">
-                            <li><i class="fa fa-map-marker"></i> <p><strong>Address</strong>: #2021 Lorem Ipsum</p></li>
-                            <li><i class="fa fa-user"></i> <p><strong>Phone</strong>:(+91) 9000-12345</p></li>
-                            <li><i class="fa fa-envelope"></i> <p><strong>Email</strong>: <a href="#">mail@example.com</a></p></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Recent Posts</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <ul class="links">
-                        <li> <a href="#">Aenean commodo ligula eget dolor<span>November 07, 2020</span></a></li>
-                        <li> <a href="#">Temporibus autem quibusdam <span>November 05, 2020</span></a></li>
-                        <li> <a href="#">Debitis aut rerum saepe <span>November 03, 2020</span></a></li>
-                        <li> <a href="#">Et voluptates repudiandae <span>November 02, 2020</span></a></li>
-                    </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Twitter</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <ul class="tweet_list">
-                            <li class="tweet_content item">
-                            <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                            <span class="time">29 September 2020</span>
-                        </li>
-                            <li class="tweet_content item">
-                            <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                            <span class="time">29 September 2020</span>
-                        </li>
-                            <li class="tweet_content item">
-                            <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                            <span class="time">29 September 2020</span>
-                        </li>
-                        </ul>
-                    </div>
-                    <div class="widget_content">
-                        <div class="tweet_go"></div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Flickr Gallery</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <div class="flickr">
-                            <ul id="flickrFeed" class="flickr-feed"></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php
+        include "footer.php";
+    ?>
 	<!--end footer-->
 	
-	<section class="footer_bottom">
-		<div class="container">
-			<div class="row">
-            <div class="col-sm-6">
-                <p class="copyright">&copy; Copyright 2020 Edge | Powered by  <a href="https://www.yahoobaba.net/">Yahoo Baba</a></p>
-            </div>
-
-            <div class="col-sm-6 ">
-                <div class="footer_social">
-                    <ul class="footbot_social">
-                        <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="dribbble" href="#." data-placement="top" data-toggle="tooltip" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a class="skype" href="#." data-placement="top" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
-                        <li><a class="rss" href="#." data-placement="top" data-toggle="tooltip" title="RSS"><i class="fa fa-rss"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-		</div>
-	</section>
-
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>

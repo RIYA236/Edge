@@ -31,6 +31,28 @@ pass : 'or''='
 
 
 
+padding: 10px;
+border: 1px solid #727CB6;
+border-radius: 3px;
+
+
+
+
+
+// echo <<<STR
+//     <li class="comment">
+//     <div class="avatar"><img alt="" src="images/blog/avatar_1.png" class="avatar"></div>
+//     <div class="comment-container">
+//         <h4 class="comment-author"><a href="#">John Smith</a></span></h4>
+//         <div class="comment-meta"><a href="#" class="comment-date">February 22, 2015</a><a class="comment-reply-link" id="reply-$i">Reply &raquo;</a></div>
+//         <div class="comment-body">
+//             <p>Ne omnis saperet docendi nec, eos ea alii molestiae aliquand. Latine fuisset mele, mandamus atrioque eu mea, wi forensib argumentum vim an. Te viderer conceptam sed, mea et delenit fabellas probat.</p>
+//         </div>
+//     </div>
+//     </li>
+//     <div class="comment_box" id="comment-box-$i"></div>
+// STR;
+
 
 
 

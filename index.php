@@ -210,7 +210,6 @@ try{
                                 <li class="col-sm-3 col-md-3 col-lg-3"><a data-placement="bottom" data-toggle="tooltip" title="Client 2" ><img src="images/clients/2.png" alt="" /></a></li>
                                 <li class="col-sm-3 col-md-3 col-lg-3"><a data-placement="bottom" data-toggle="tooltip" title="Client 3" ><img src="images/clients/3.png" alt="" /></a></li>
                                 <li class="col-sm-3 col-md-3 col-lg-3"><a data-placement="bottom" data-toggle="tooltip" title="Client 4" ><img src="images/clients/4.png" alt="" /></a></li>
-                                <!-- <li class="col-sm-3 col-md-3 col-lg-3"><a href="services.html" data-placement="bottom" data-toggle="tooltip" title="Client 4" ><img src="images/clients/4.png" alt="" /></a></li> -->
                             </ul><!--/ .client_items-->
                         </div>
                     </div>
@@ -220,89 +219,9 @@ try{
     </section>
 	<!--end wrapper-->
 	<!--start footer-->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-3 col-lg-4">
-                    <div class="widget_title">
-                        <h4><span>About Us</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <p>Donec earum rerum hic tenetur ans sapiente delectus, ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus asperiores.</p>
-                        <ul class="contact-details-alt">
-                            <li><i class="fa fa-map-marker"></i> <p><strong>Address</strong>: India</p></li>
-                            <li><i class="fa fa-phone"></i> <p><strong>Phone</strong>:<a href="tel:1234567890"> (+91) 12345 67890 </a></p></li>
-                            <li><i class="fa fa-envelope"></i> <p><strong>Email</strong>: <a href="mailto:noreply@edge.com" class="hidden-sm">noreply@edge.com</a></p></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-lg-4">
-                    <div class="widget_title">
-                        <h4><span>Recent Blogs</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <ul class="links">
-                          <?php
-                            $sqlquery = $connection->prepare("select * from `blogs` order by `blog_id` desc limit 3 ");
-                            $sqlquery->execute();
-                            $results = $sqlquery;
-                            foreach($results as $result){
-                                $blog_date = $result['blog_created_date'];
-                                $date = (explode(" ", $blog_date));
-                                $date = (explode("-", $date[0]));
-                                $day = $date[2];
-                                $month = $date[1];
-                                $year = $date[0];
-                          ?>
-                            <li><a href="blog-post.php?blog_id=<?php echo $result['blog_id']; ?>"><?php echo $result['blog_title']; ?><span> <?php echo monthName($month) . $day . "," . $year; ?> </span></a></li>
-                          <?php
-                            }
-                          ?>
-                        </ul>
-                    </div>
-                </div>
-                <!-- <div class="col-sm-6 col-md-3 col-lg-3">
-                    <div class="widget_title">
-                        <h4><span>Twitter</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <ul class="tweet_list">
-                            <li class="tweet_content item">
-                                <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                                <span class="time">29 September 2020</span>
-                            </li>
-                            <li class="tweet_content item">
-                                <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                                <span class="time">29 September 2020</span>
-                            </li>
-                            <li class="tweet_content item">
-                                <p class="tweet_link"><a href="#">@yahooobaba </a> Lorem ipsum dolor et, consectetur adipiscing eli</p>
-                                <span class="time">29 September 2020</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="widget_content">
-                        <div class="tweet_go"></div>
-                    </div>
-                </div> -->
-                <div class="col-sm-6 col-md-3 col-lg-4">
-                    <div class="widget_title">
-                        <h4><span>Flickr Gallery</span></h4>
-                    </div>
-                    <div class="widget_content">
-                        <div class="flickr">
-                            <ul id="flickrFeed" class="flickr-feed"></ul>
-                        </div>
-                    </div>
-                </div>
-
-            <div class="col-sm-6">
-                <p class="copyright">Copyright &copy;Edge <?php echo date('Y'); ?></p>
-            </div>
-
-            </div>
-        </div>
-    </footer>
+    <?php
+        include "footer.php";
+    ?>
 	<!--end footer-->
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
