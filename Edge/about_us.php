@@ -18,6 +18,7 @@
 	
 <?php include "header.php"; ?>
 <?php include "connection.php"; ?>
+<?php include "month.php"; ?>
 
 <!--start wrapper-->
 	<section class="wrapper">
