@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,12 +13,6 @@
     <link rel="stylesheet" href="css/layout/wide.css" data-name="layout">
 
     <link rel="stylesheet" type="text/css" href="css/switcher.css" media="screen" />
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 
@@ -111,11 +103,11 @@ try{
 								<h4><span>Project Details</span></h4>
 							</div>
 							<ul class="details">
-								<li><span>Client :</span><?php echo $result['client']; ?></li>
-								<li><span>Company :</span><?php echo $result['company']; ?></li>
-								<li><span>Category :</span><?php echo $result['project_category']; ?></li>
-								<li><span>Date :</span><?php echo $result['project_date']; ?></li>
-								<li><span>Project URL :</span><a href="<?php echo $result['project_url']; ?>" target="_blank"><?php echo $result['project_url']; ?></a></li>
+								<li><span>Client :</span><?php echo $result['client']; ?></li><br/>
+								<li><span>Company :</span><?php echo $result['company']; ?></li><br/>
+								<li><span>Category :</span><?php echo $result['project_category']; ?></li><br/>
+								<li><span>Date :</span><?php echo $result['project_date']; ?></li><br/>
+								<li><span>Project URL :</span><a href="<?php echo $result['project_url']; ?>" target="_blank"><?php echo $result['project_url']; ?></a></li><br/>
 							</ul>
 						</div>
 					</div>

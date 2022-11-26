@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,12 +14,6 @@
 
     <link rel="stylesheet" type="text/css" href="css/switcher.css" media="screen" />
     <script src="js/jquery.min.js"></script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 
@@ -236,7 +228,7 @@ include "month.php";
                 foreach($results as $res){
                     if($res['total'] != ""){
             ?>
-    				<span><i class="fa fa-comments"></i> <a href="#"><?php echo $res['total']; ?> Comments</a></span>
+    				<span><i class="fa fa-comments"></i> <a href="blog-post.php?blog_id=<?php echo $result['blog_id']; ?>#comments"><?php echo $res['total']; ?> Comments</a></span>
             <?php
                     }
                 }

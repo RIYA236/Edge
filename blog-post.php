@@ -3,10 +3,7 @@
 <?php include "month.php"; ?>
 
 <!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
 <html class="no-js" lang="en">
-<!--<![endif]-->
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -40,12 +37,6 @@
 
     <link rel="stylesheet" type="text/css" href="css/switcher.css" media="screen" />
     <script src="js/jquery.min.js"></script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -132,7 +123,7 @@
                         </div>
 
                         <!--News Comments-->
-                        <div class="news_comments">
+                        <div class="news_comments" id="comments">
                             <div class="dividerHeading">
 
             <?php
